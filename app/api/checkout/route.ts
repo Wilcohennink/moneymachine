@@ -1,7 +1,20 @@
 import { NextRequest, NextResponse } from "next/server";
 import Stripe from "stripe";
 
-const PRODUCTS: Record<string, { name: string; amount: number; description: string }> = {
+type Product = {
+  name: string;
+  amount: number;
+  description: string;
+  recurring?: boolean;
+};
+
+const PRODUCTS: Record<string, Product> = {
+  membership: {
+    name: "AI Tools Membership",
+    amount: 200, // €2.00/month
+    description: "Monthly access to all AI tools, templates, and community updates.",
+    recurring: true,
+  },
   starter: {
     name: "AI Automation Toolkit — Starter",
     amount: 4700, // €47.00
@@ -41,21 +54,27 @@ async function getOrCreatePrice(stripe: Stripe, productKey: string): Promise<str
     });
   }
 
-  // Check for existing price
+  // Check for existing price (recurring prices must match interval)
   const prices = await stripe.prices.list({
     product: stripeProduct.id,
     active: true,
     limit: 20,
   });
-  let price = prices.data.find(
-    (p) => p.unit_amount === product.amount && p.currency === "eur"
-  );
+
+  let price = prices.data.find((p) => {
+    if (p.unit_amount !== product.amount || p.currency !== "eur") return false;
+    if (product.recurring) {
+      return p.recurring?.interval === "month";
+    }
+    return !p.recurring;
+  });
 
   if (!price) {
     price = await stripe.prices.create({
       product: stripeProduct.id,
       unit_amount: product.amount,
       currency: "eur",
+      ...(product.recurring ? { recurring: { interval: "month" } } : {}),
     });
   }
 
@@ -79,13 +98,14 @@ export async function POST(req: NextRequest) {
 
   const stripe = new Stripe(secretKey);
   const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || `https://${req.headers.get("host")}`;
+  const productConfig = PRODUCTS[product];
 
   try {
     const priceId = await getOrCreatePrice(stripe, product);
     const session = await stripe.checkout.sessions.create({
       payment_method_types: ["card"],
       line_items: [{ price: priceId, quantity: 1 }],
-      mode: "payment",
+      mode: productConfig.recurring ? "subscription" : "payment",
       success_url: `${baseUrl}/success?session_id={CHECKOUT_SESSION_ID}&product=${product}`,
       cancel_url: `${baseUrl}/cancel`,
       allow_promotion_codes: true,
