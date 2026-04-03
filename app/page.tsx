@@ -47,6 +47,15 @@ export default function Home() {
       badgeColor: "bg-green-500/20 text-green-400 border-green-500/30",
     },
     {
+      emoji: "💶",
+      label: "Uurtarief Calculator",
+      desc: "Bereken je minimumtarief als ZZP'er op basis van inkomen, kosten en uren.",
+      href: "/uurtarief-calculator",
+      cta: "Bereken uurtarief →",
+      badge: "Live",
+      badgeColor: "bg-green-500/20 text-green-400 border-green-500/30",
+    },
+    {
       emoji: "📄",
       label: "InvoiceQuick",
       desc: "Free invoice generator for freelancers and contractors. Create, preview, and download professional invoices instantly.",
