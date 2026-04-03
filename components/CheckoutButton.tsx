@@ -1,6 +1,12 @@
 "use client";
 
-import { useState } from "react";
+// Direct Stripe Payment Links — no backend key required
+const STRIPE_LINKS: Record<string, string> = {
+  starter:    "https://buy.stripe.com/7sYeVd0MWgX023x4DBabK00",
+  pro:        "https://buy.stripe.com/dRm5kDfHQ9uy5fJ9XVabK01",
+  complete:   "https://buy.stripe.com/5kQ5kD67gayC8rV7PNabK02",
+  membership: "https://buy.stripe.com/7sYeVd0MWgX023x4DBabK00",
+};
 
 export default function CheckoutButton({
   product,
@@ -9,36 +15,14 @@ export default function CheckoutButton({
   product: string;
   label: string;
 }) {
-  const [loading, setLoading] = useState(false);
-
-  async function handleClick() {
-    setLoading(true);
-    try {
-      const res = await fetch("/api/checkout", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ product }),
-      });
-      const data = await res.json();
-      if (data.url) {
-        window.location.href = data.url;
-      } else {
-        alert("Error: " + (data.error || "Could not start checkout"));
-        setLoading(false);
-      }
-    } catch {
-      alert("Network error. Please try again.");
-      setLoading(false);
-    }
-  }
+  const link = STRIPE_LINKS[product];
 
   return (
-    <button
-      onClick={handleClick}
-      disabled={loading}
-      className="w-full bg-indigo-500 hover:bg-indigo-600 disabled:opacity-60 disabled:cursor-not-allowed text-white py-3.5 rounded-xl font-bold transition-colors"
+    <a
+      href={link ?? "#"}
+      className="block w-full bg-indigo-500 hover:bg-indigo-600 text-white py-3.5 rounded-xl font-bold transition-colors text-center"
     >
-      {loading ? "Loading…" : label}
-    </button>
+      {label}
+    </a>
   );
 }
