@@ -7,7 +7,17 @@ export const metadata = {
 };
 
 export default function Home() {
-  const streams = [
+  const streams: Array<{
+    emoji: string;
+    label: string;
+    desc: string;
+    href: string;
+    cta: string;
+    badge: string;
+    badgeColor: string;
+    external?: boolean;
+    disabled?: boolean;
+  }> = [
     {
       emoji: "🖥️",
       label: "Hosting Deals",
