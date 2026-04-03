@@ -47,6 +47,15 @@ export default function Home() {
       badgeColor: "bg-green-500/20 text-green-400 border-green-500/30",
     },
     {
+      emoji: "📱",
+      label: "QR Code Generator",
+      desc: "Free QR code generator for URLs, text, WiFi, email, and phone. Customize colors and size. Download PNG or SVG instantly.",
+      href: "/qr-code-generator",
+      cta: "Generate QR code →",
+      badge: "Live",
+      badgeColor: "bg-green-500/20 text-green-400 border-green-500/30",
+    },
+    {
       emoji: "🏆",
       label: "Sponsor Wall",
       desc: "Permanent sponsor spots. Pay once, your brand lives here forever. Dofollow backlink included.",
@@ -217,6 +226,12 @@ export default function Home() {
             >
               ✍️ Free Online Invoice Generator →
             </Link>
+            <Link
+              href="/qr-code-generator"
+              className="bg-[#0f0f1a] border border-[#2e2e45] hover:border-indigo-500/40 text-white px-6 py-4 rounded-xl font-bold text-sm transition-colors"
+            >
+              📱 Free QR Code Generator →
+            </Link>
           </div>
         </div>
       </section>
@@ -232,6 +247,10 @@ export default function Home() {
         {" · "}
         <Link href="/free-invoice-templates" className="hover:text-zinc-300 transition-colors">
           Free Invoice Templates
+        </Link>
+        {" · "}
+        <Link href="/qr-code-generator" className="hover:text-zinc-300 transition-colors">
+          QR Code Generator
         </Link>
       </footer>
     </div>
