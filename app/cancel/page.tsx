@@ -1,7 +1,7 @@
 import Link from "next/link";
 
 export const metadata = {
-  title: "Order Cancelled — AI Business Accelerator",
+  title: "Order Cancelled — The Profit Factory",
 };
 
 export default function CancelPage() {

@@ -21,12 +21,12 @@ const PRODUCTS: Record<string, Product> = {
     description: "15 copy-paste AI templates to automate your business in under an hour.",
   },
   pro: {
-    name: "AI Business Accelerator — Pro",
+    name: "The Profit Factory — Pro",
     amount: 9700, // €97.00
     description: "47 AI templates — the complete toolkit for lead gen, proposals, and customer support automation.",
   },
   complete: {
-    name: "AI Business Accelerator — Complete",
+    name: "The Profit Factory — Complete",
     amount: 19700, // €197.00
     description: "Everything in Pro + AI chatbot setup, email sequences, agency playbook, and 60-day priority support.",
   },

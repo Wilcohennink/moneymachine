@@ -42,7 +42,7 @@ export default function SponsorSuccessPage({
         </p>
         <div className="flex flex-wrap gap-3 justify-center">
           <a
-            href="https://twitter.com/intent/tweet?text=I%20just%20claimed%20a%20permanent%20sponsor%20spot%20on%20the%20Wall%20of%201%2C000%20Sponsors.%20A%20permanent%20backlink%20from%20%E2%82%AC500.%20Only%201%2C000%20spots%20ever.&url=https%3A%2F%2Faibusinessaccelerator.com%2Fsponsor-wall"
+            href="https://twitter.com/intent/tweet?text=I%20just%20claimed%20a%20permanent%20sponsor%20spot%20on%20the%20Wall%20of%201%2C000%20Sponsors.%20A%20permanent%20backlink%20from%20%E2%82%AC500.%20Only%201%2C000%20spots%20ever.&url=https%3A%2F%2Ftheprofitfactory.ai%2Fsponsor-wall"
             target="_blank"
             rel="noopener noreferrer"
             className="bg-[#1e1e30] hover:bg-[#2a2a40] text-zinc-200 px-5 py-2.5 rounded-xl font-semibold text-sm transition-colors"
@@ -50,7 +50,7 @@ export default function SponsorSuccessPage({
             Share on X/Twitter →
           </a>
           <a
-            href="https://www.linkedin.com/sharing/share-offsite/?url=https%3A%2F%2Faibusinessaccelerator.com%2Fsponsor-wall"
+            href="https://www.linkedin.com/sharing/share-offsite/?url=https%3A%2F%2Ftheprofitfactory.ai%2Fsponsor-wall"
             target="_blank"
             rel="noopener noreferrer"
             className="bg-[#1e1e30] hover:bg-[#2a2a40] text-zinc-200 px-5 py-2.5 rounded-xl font-semibold text-sm transition-colors"

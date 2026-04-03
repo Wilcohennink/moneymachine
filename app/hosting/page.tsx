@@ -230,7 +230,7 @@ export default function HostingPage() {
       {/* NAV */}
       <nav className="fixed top-0 left-0 right-0 z-50 flex items-center justify-between px-6 py-4 bg-[#080810]/90 backdrop-blur border-b border-[#1e1e30]">
         <Link href="/" className="font-black text-lg tracking-tight">
-          AI<span className="text-indigo-400">Accelerator</span>
+          The<span className="text-amber-400">ProfitFactory</span>
         </Link>
         <a
           href={providers[0].affiliateUrl}

@@ -36,7 +36,7 @@ export default function SponsorWallPage() {
       {/* NAV */}
       <nav className="fixed top-0 left-0 right-0 z-40 flex items-center justify-between px-6 py-4 bg-[#080810]/90 backdrop-blur border-b border-[#1e1e30]">
         <a href="/" className="font-black text-lg tracking-tight">
-          AI<span className="text-indigo-400">Accelerator</span>
+          The<span className="text-amber-400">ProfitFactory</span>
         </a>
         <div className="flex items-center gap-4">
           <span className="text-zinc-400 text-sm hidden sm:block">
@@ -317,10 +317,10 @@ export default function SponsorWallPage() {
       {/* FOOTER */}
       <footer className="py-8 px-6 text-center text-zinc-500 text-sm border-t border-[#1e1e30]">
         <a href="/" className="hover:text-zinc-300 transition-colors">
-          AI Business Accelerator
+          The Profit Factory
         </a>
         {" · "}
-        <a href="mailto:hello@aibusinessaccelerator.com" className="hover:text-zinc-300 transition-colors">
+        <a href="mailto:hello@theprofitfactory.ai" className="hover:text-zinc-300 transition-colors">
           Contact
         </a>
       </footer>
