@@ -13,9 +13,9 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "AI Business Accelerator — Add AI to Your Business in 24 Hours",
+  title: "The Profit Factory — Revenue Streams That Work",
   description:
-    "Save 15–20 hours per week with AI automation. 47 plug-and-play templates. One-time payment from €47.",
+    "Hosting deals, viral content, AI prompts, and more. Real revenue streams, not hype.",
 };
 
 export default function RootLayout({
