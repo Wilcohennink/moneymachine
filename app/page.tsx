@@ -38,6 +38,15 @@ export default function Home() {
       external: true,
     },
     {
+      emoji: "🧮",
+      label: "BTW Calculator",
+      desc: "Bereken BTW razendsnel voor 6%, 9% en 21%. Excl ↔ Incl. Gratis voor ZZP'ers.",
+      href: "/btw-calculator",
+      cta: "Bereken BTW →",
+      badge: "Live",
+      badgeColor: "bg-green-500/20 text-green-400 border-green-500/30",
+    },
+    {
       emoji: "📄",
       label: "InvoiceQuick",
       desc: "Free invoice generator for freelancers and contractors. Create, preview, and download professional invoices instantly.",
