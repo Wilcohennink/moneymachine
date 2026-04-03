@@ -40,12 +40,12 @@ export default function Home() {
     {
       emoji: "🏆",
       label: "Sponsor Wall",
-      desc: "Permanent sponsor spots. Get lasting visibility for your brand or product.",
-      href: "#",
-      cta: "Coming soon",
-      badge: "Soon",
-      badgeColor: "bg-yellow-500/20 text-yellow-400 border-yellow-500/30",
-      disabled: true,
+      desc: "Permanent sponsor spots. Pay once, your brand lives here forever. Dofollow backlink included.",
+      href: "https://theprofitfactory.ai/sponsor-wall",
+      cta: "Get a spot →",
+      badge: "Live",
+      badgeColor: "bg-green-500/20 text-green-400 border-green-500/30",
+      external: true,
     },
   ];
 
