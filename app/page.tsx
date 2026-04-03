@@ -30,12 +30,11 @@ export default function Home() {
     {
       emoji: "📄",
       label: "InvoiceQuick",
-      desc: "Fast, no-nonsense invoicing for freelancers. Send your first invoice in 60 seconds.",
-      href: "#",
-      cta: "Coming soon",
-      badge: "Soon",
-      badgeColor: "bg-yellow-500/20 text-yellow-400 border-yellow-500/30",
-      disabled: true,
+      desc: "Free invoice generator for freelancers and contractors. Create, preview, and download professional invoices instantly.",
+      href: "/invoice-generator",
+      cta: "Create free invoice →",
+      badge: "Live",
+      badgeColor: "bg-green-500/20 text-green-400 border-green-500/30",
     },
     {
       emoji: "🏆",
@@ -54,7 +53,7 @@ export default function Home() {
       {/* NAV */}
       <nav className="fixed top-0 left-0 right-0 z-50 flex items-center justify-between px-6 py-4 bg-[#080810]/90 backdrop-blur border-b border-[#1e1e30]">
         <div className="font-black text-lg tracking-tight">
-          The<span className="text-indigo-400">ProfitFactory</span>
+          The<span className="text-amber-400">ProfitFactory</span>
         </div>
         <Link
           href="/hosting"
@@ -150,6 +149,35 @@ export default function Home() {
       </section>
 
       {/* FOOTER */}
+      {/* SEO TOOLS SECTION */}
+      <section className="py-16 px-6 border-t border-[#1e1e30]">
+        <div className="max-w-5xl mx-auto text-center">
+          <div className="text-indigo-400 font-bold text-sm uppercase tracking-widest mb-3">
+            Free Tools
+          </div>
+          <h2 className="text-3xl font-black tracking-tight mb-4">
+            Free resources for freelancers
+          </h2>
+          <p className="text-zinc-400 mb-8 max-w-xl mx-auto">
+            Professional tools and templates — free, no signup required.
+          </p>
+          <div className="flex flex-col sm:flex-row gap-4 justify-center">
+            <Link
+              href="/free-invoice-templates"
+              className="bg-[#0f0f1a] border border-[#2e2e45] hover:border-indigo-500/40 text-white px-6 py-4 rounded-xl font-bold text-sm transition-colors"
+            >
+              📄 Free Invoice Templates (Word, PDF, Excel) →
+            </Link>
+            <Link
+              href="/invoice-generator"
+              className="bg-[#0f0f1a] border border-[#2e2e45] hover:border-indigo-500/40 text-white px-6 py-4 rounded-xl font-bold text-sm transition-colors"
+            >
+              ✍️ Free Online Invoice Generator →
+            </Link>
+          </div>
+        </div>
+      </section>
+
       <footer className="py-8 px-6 text-center text-zinc-500 text-sm border-t border-[#1e1e30]">
         © 2026 The Profit Factory ·{" "}
         <a
@@ -158,6 +186,10 @@ export default function Home() {
         >
           Contact
         </a>
+        {" · "}
+        <Link href="/free-invoice-templates" className="hover:text-zinc-300 transition-colors">
+          Free Invoice Templates
+        </Link>
       </footer>
     </div>
   );
