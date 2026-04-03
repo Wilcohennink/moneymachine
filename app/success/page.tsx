@@ -38,16 +38,11 @@ export default function SuccessPage({
           </p>
           <div className="space-y-3">
             <a
-              href="/downloads/ai-business-accelerator.pdf"
+              href="http://204.168.221.20:3002/downloads/starter-pack.html"
+              target="_blank"
               className="flex items-center justify-center gap-2 bg-indigo-500 hover:bg-indigo-600 text-white py-3 rounded-xl font-bold transition-colors"
             >
-              ⬇️ Download Starter Pack (PDF)
-            </a>
-            <a
-              href="/downloads/automation-templates.zip"
-              className="flex items-center justify-center gap-2 bg-[#1e1e30] hover:bg-[#2a2a40] text-zinc-300 py-3 rounded-xl font-bold transition-colors"
-            >
-              ⬇️ Automation Templates
+              ⬇️ Open Your AI Prompt Templates →
             </a>
           </div>
         </div>
@@ -68,7 +63,7 @@ export default function SuccessPage({
             €2,997 Done-For-You Setup
           </p>
           <a
-            href="mailto:hello@aibusinessaccelerator.com?subject=Done-For-You%20Setup%20After%20Purchase"
+            href="mailto:info@theprofitfactory.ai?subject=Done-For-You%20Setup%20After%20Purchase"
             className="inline-block bg-indigo-500 hover:bg-indigo-600 text-white px-6 py-3 rounded-xl font-bold transition-colors"
           >
             Book a Call →
