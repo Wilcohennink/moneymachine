@@ -148,7 +148,40 @@ export default function Home() {
         </div>
       </section>
 
-      {/* FOOTER */}
+      {/* INVOICEQUICK LTD SECTION */}
+      <section id="invoicequick" className="py-20 px-6 bg-[#0f0f1a] border-t border-[#1e1e30] relative overflow-hidden">
+        <div className="absolute inset-0 bg-gradient-to-br from-amber-500/5 to-orange-500/5 pointer-events-none" />
+        <div className="max-w-4xl mx-auto text-center relative">
+          <div className="inline-flex items-center gap-2 bg-amber-500/10 border border-amber-500/30 text-amber-300 px-4 py-2 rounded-full text-sm font-semibold mb-6">
+            ⚡ Limited — 500 lifetime spots
+          </div>
+          <h2 className="text-3xl md:text-5xl font-black tracking-tight mb-6">
+            InvoiceQuick
+            <br />
+            <span className="bg-gradient-to-r from-amber-400 to-orange-400 bg-clip-text text-transparent">
+              €59 · Yours Forever
+            </span>
+          </h2>
+          <p className="text-zinc-400 text-lg mb-8 max-w-2xl mx-auto leading-relaxed">
+            Professional invoice generator for freelancers and contractors. Create, preview, and send invoices in 60 seconds. One payment — no subscriptions, no limits.
+          </p>
+          <div className="grid sm:grid-cols-3 gap-4 max-w-2xl mx-auto mb-10">
+            {["Unlimited invoices", "PDF download", "No subscription"].map((f) => (
+              <div key={f} className="bg-[#0d0d1a] border border-amber-500/20 rounded-xl py-3 px-4 text-sm font-semibold text-amber-200">
+                ✓ {f}
+              </div>
+            ))}
+          </div>
+          <Link
+            href="/invoice-generator"
+            className="bg-amber-500 hover:bg-amber-400 text-black px-10 py-4 rounded-xl font-black text-lg transition-all hover:-translate-y-0.5 inline-block"
+          >
+            Try InvoiceQuick Free →
+          </Link>
+          <p className="text-zinc-500 text-sm mt-4">Free tier available · Lifetime Deal €59 one-time</p>
+        </div>
+      </section>
+
       {/* SEO TOOLS SECTION */}
       <section className="py-16 px-6 border-t border-[#1e1e30]">
         <div className="max-w-5xl mx-auto text-center">
