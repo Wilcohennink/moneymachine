@@ -1,7 +1,8 @@
 "use client";
 
 import Link from "next/link";
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { captureReferralCode, trackReferralConversion, storeReferralEmail } from "@/lib/referral";
 
 interface LineItem {
   description: string;
@@ -26,6 +27,27 @@ export default function InvoiceGenerator() {
   const [taxRate, setTaxRate] = useState("0");
   const [currency, setCurrency] = useState("€");
   const [preview, setPreview] = useState(false);
+  const [conversionTracked, setConversionTracked] = useState(false);
+
+  // Capture referral code on mount
+  useEffect(() => {
+    captureReferralCode();
+  }, []);
+
+  // Track email when user enters it
+  useEffect(() => {
+    if (from.email) {
+      storeReferralEmail(from.email);
+    }
+  }, [from.email]);
+
+  // Track conversion when user previews invoice
+  useEffect(() => {
+    if (preview && !conversionTracked && from.email) {
+      trackReferralConversion("invoice_generated", from.email);
+      setConversionTracked(true);
+    }
+  }, [preview, conversionTracked, from.email]);
 
   const subtotal = items.reduce((sum, item) => {
     const q = parseFloat(item.qty) || 0;

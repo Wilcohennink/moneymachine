@@ -3,6 +3,7 @@ import Stripe from "stripe";
 import fs from "fs";
 import path from "path";
 import { readSponsors, writeSponsors, markSpotSold } from "@/lib/sponsors";
+import { getReferralsByCode, updateReferral, updateReferrerStats, getOrCreateReferrerStats, calculateTier, getRewardsForTier } from "@/lib/referralDb";
 
 // Append an event row to payments.csv for auditing
 function logPayment(data: Record<string, string>) {
@@ -27,6 +28,19 @@ function logPayment(data: Record<string, string>) {
     fs.appendFileSync(file, row);
   } catch {
     console.error("[webhook] Could not write payments.csv");
+  }
+}
+
+// Handle referral conversion for Stripe purchases
+async function handleReferralConversion(email: string, product: string) {
+  try {
+    // Check if this email has a pending referral
+    // We need to find which referral code this email belongs to
+    // For now, we'll skip this and rely on client-side tracking
+    // TODO: Enhance this by storing referral code in Stripe metadata
+    console.log(`[referral] Conversion for ${email} - product: ${product}`);
+  } catch (error) {
+    console.error("[referral] Error tracking conversion:", error);
   }
 }
 
