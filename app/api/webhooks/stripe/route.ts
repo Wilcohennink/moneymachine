@@ -98,6 +98,41 @@ export async function POST(req: NextRequest) {
         `[webhook] Payment complete — ${session.customer_details?.email} — mode: ${session.mode} — product: ${session.metadata?.product ?? session.metadata?.app}`
       );
 
+      // Handle referral conversion for purchases
+      const customerEmail = session.customer_details?.email;
+      const referralCode = session.metadata?.referral_code;
+      if (customerEmail && referralCode) {
+        try {
+          const referrals = await getReferralsByCode(referralCode);
+          const pendingReferral = referrals.find(
+            r => r.referredEmail === customerEmail && r.conversionStatus === 'pending'
+          );
+
+          if (pendingReferral) {
+            await updateReferral(pendingReferral.id, {
+              conversionStatus: 'converted',
+              conversionAction: `stripe_purchase_${session.metadata?.product ?? session.metadata?.app ?? 'unknown'}`,
+              convertedAt: new Date().toISOString(),
+            });
+
+            const stats = await getOrCreateReferrerStats(referralCode);
+            const newConvertedCount = stats.convertedReferrals + 1;
+            const newTier = calculateTier(newConvertedCount);
+            const unlockedRewards = getRewardsForTier(newTier);
+
+            await updateReferrerStats(referralCode, {
+              convertedReferrals: newConvertedCount,
+              currentTier: newTier,
+              unlockedRewards,
+            });
+
+            console.log(`[referral] Conversion tracked for ${customerEmail} - code: ${referralCode} - tier: ${newTier}`);
+          }
+        } catch (error) {
+          console.error("[referral] Error tracking Stripe conversion:", error);
+        }
+      }
+
       // Handle sponsor wall spot purchase
       if (session.metadata?.app === "sponsor-wall" && session.metadata?.spotId) {
         const spotId = Number(session.metadata.spotId);
