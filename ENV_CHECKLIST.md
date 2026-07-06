@@ -11,7 +11,23 @@ Note: Actual keys are already set in .env.local and Vercel - do not commit real 
 
 ### ⚠️ MISSING - Must Add to Vercel
 
-#### 1. Stripe Webhook Secret
+#### 1. Resend API Key (for email automation)
+```bash
+RESEND_API_KEY=re_xxxxxxxxxxxxxxxxxxxxx
+```
+
+**How to get:**
+1. Go to https://resend.com/api-keys
+2. Create new API key
+3. Copy the key (starts with `re_`)
+4. Add to Vercel environment variables
+
+**Used for:**
+- Trial nurture email sequence (3 emails)
+- Transactional emails
+- User onboarding automation
+
+#### 2. Stripe Webhook Secret
 ```bash
 STRIPE_WEBHOOK_SECRET=whsec_xxxxxxxxxxxxxxxxxxxxx
 ```
@@ -23,7 +39,7 @@ STRIPE_WEBHOOK_SECRET=whsec_xxxxxxxxxxxxxxxxxxxxx
 4. Select events: `checkout.session.completed`, `invoice.paid`, `invoice.payment_failed`, `customer.subscription.*`, `payment_intent.payment_failed`
 5. Copy the signing secret (starts with `whsec_`)
 
-#### 2. Google Ads ID
+#### 3. Google Ads ID
 ```bash
 NEXT_PUBLIC_GOOGLE_ADS_ID=AW-XXXXXXXXXX
 ```
@@ -44,6 +60,7 @@ NEXT_PUBLIC_GOOGLE_ADS_ID=AW-XXXXXXXXXX
 STRIPE_SECRET_KEY=[copy from .env.local]
 NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY=[copy from .env.local]
 STRIPE_WEBHOOK_SECRET=[get from Stripe dashboard]
+RESEND_API_KEY=[get from Resend dashboard]
 NEXT_PUBLIC_GOOGLE_ADS_ID=[get from Google Ads]
 ```
 

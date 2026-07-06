@@ -133,6 +133,40 @@ export async function POST(req: NextRequest) {
         }
       }
 
+      // Handle trial signup email sequence (for SaaS subscriptions)
+      if (session.mode === "subscription" && session.metadata?.product === "zzp-admin-suite") {
+        const email = session.customer_details?.email;
+        const customerId = session.customer as string;
+
+        if (email && customerId) {
+          // Extract first name from customer name (or default to "daar")
+          const fullName = session.customer_details?.name || "";
+          const firstName = fullName.split(" ")[0] || "daar";
+
+          try {
+            // Trigger the email sequence
+            const emailResponse = await fetch(`${req.headers.get("host")?.includes("localhost") ? "http" : "https"}://${req.headers.get("host")}/api/email/schedule`, {
+              method: "POST",
+              headers: { "Content-Type": "application/json" },
+              body: JSON.stringify({
+                userId: customerId,
+                email,
+                firstName,
+                signupDate: new Date().toISOString(),
+              }),
+            });
+
+            if (emailResponse.ok) {
+              console.log(`[email] Trial nurture sequence started for ${email}`);
+            } else {
+              console.error(`[email] Failed to start email sequence for ${email}`);
+            }
+          } catch (error) {
+            console.error("[email] Error triggering email sequence:", error);
+          }
+        }
+      }
+
       // Handle sponsor wall spot purchase
       if (session.metadata?.app === "sponsor-wall" && session.metadata?.spotId) {
         const spotId = Number(session.metadata.spotId);
