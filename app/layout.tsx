@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
+import { GoogleAdsTracking } from "@/components/GoogleAdsTracking";
+import { AttributionTracker } from "@/components/AttributionTracker";
 
 const inter = Inter({
   variable: "--font-inter",
@@ -32,7 +34,11 @@ export default function RootLayout({
           crossOrigin="anonymous"
         />
       </head>
-      <body className="min-h-full flex flex-col">{children}</body>
+      <body className="min-h-full flex flex-col">
+        <GoogleAdsTracking />
+        <AttributionTracker />
+        {children}
+      </body>
     </html>
   );
 }

@@ -91,7 +91,7 @@ export async function POST(req: NextRequest) {
     );
   }
 
-  const { product } = await req.json();
+  const { product, attribution } = await req.json();
   if (!PRODUCTS[product]) {
     return NextResponse.json({ error: "Invalid product." }, { status: 400 });
   }
@@ -102,6 +102,14 @@ export async function POST(req: NextRequest) {
 
   try {
     const priceId = await getOrCreatePrice(stripe, product);
+
+    // Merge attribution data into metadata
+    const metadata: Record<string, string> = {
+      product,
+      app: "ai-business-accelerator",
+      ...(attribution || {}),
+    };
+
     const session = await stripe.checkout.sessions.create({
       payment_method_types: ["card"],
       line_items: [{ price: priceId, quantity: 1 }],
@@ -110,7 +118,7 @@ export async function POST(req: NextRequest) {
       cancel_url: `${baseUrl}/cancel`,
       allow_promotion_codes: true,
       billing_address_collection: "auto",
-      metadata: { product, app: "ai-business-accelerator" },
+      metadata,
     });
 
     return NextResponse.json({ url: session.url });

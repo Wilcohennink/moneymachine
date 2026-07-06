@@ -17,9 +17,11 @@ export async function POST(req: NextRequest) {
   }
 
   let spotId: number;
+  let attribution: Record<string, string> | undefined;
   try {
     const body = await req.json();
     spotId = Number(body.spotId);
+    attribution = body.attribution;
     if (!spotId || spotId < 1 || spotId > 1000) {
       return NextResponse.json({ error: "Invalid spot ID." }, { status: 400 });
     }
@@ -75,6 +77,7 @@ export async function POST(req: NextRequest) {
         app: "sponsor-wall",
         tier,
         spotId: String(spotId),
+        ...(attribution || {}),
       },
       expires_at: Math.floor(Date.now() / 1000) + 30 * 60, // 30 min
     });

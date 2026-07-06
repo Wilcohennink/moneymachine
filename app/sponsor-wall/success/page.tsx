@@ -1,16 +1,19 @@
+"use client";
+
 import Link from "next/link";
+import { ConversionTracker } from "@/components/GoogleAdsTracking";
+import { Suspense } from "react";
 
-export const metadata = {
-  title: "Spot Claimed! — Wall of 1000 Sponsors",
-};
-
-export default function SponsorSuccessPage({
-  searchParams,
-}: {
-  searchParams: Promise<{ spot?: string; session_id?: string }>;
-}) {
+function SponsorSuccessContent() {
   return (
-    <div className="min-h-screen bg-[#080810] text-[#f0f0ff] font-sans flex flex-col items-center justify-center px-6 text-center">
+    <>
+      {/* Track conversion for Google Ads - Sponsor wall purchases start at €500 */}
+      <ConversionTracker
+        conversionType="SPONSOR_WALL_PURCHASE"
+        value={500}
+        currency="EUR"
+      />
+      <div className="min-h-screen bg-[#080810] text-[#f0f0ff] font-sans flex flex-col items-center justify-center px-6 text-center">
       <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[600px] h-[400px] bg-amber-500/8 rounded-full blur-3xl pointer-events-none" />
 
       <div className="text-7xl mb-6">🎉</div>
@@ -67,5 +70,18 @@ export default function SponsorSuccessPage({
         ← Back to the Wall
       </Link>
     </div>
+    </>
+  );
+}
+
+export default function SponsorSuccessPage() {
+  return (
+    <Suspense fallback={
+      <div className="min-h-screen bg-[#080810] text-[#f0f0ff] flex items-center justify-center">
+        <div className="text-zinc-400">Loading...</div>
+      </div>
+    }>
+      <SponsorSuccessContent />
+    </Suspense>
   );
 }

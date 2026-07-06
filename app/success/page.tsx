@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { Suspense } from "react";
 import { useSearchParams } from "next/navigation";
+import { ConversionTracker } from "@/components/GoogleAdsTracking";
 
 const BASE_URL = "http://204.168.221.20:3002";
 
@@ -74,8 +75,18 @@ function SuccessContent() {
   const productKey = (searchParams.get("product") ?? "starter") as keyof typeof PRODUCTS;
   const product = PRODUCTS[productKey] ?? PRODUCTS.starter;
 
+  // Parse product price for conversion tracking
+  const productValue = parseFloat(product.price.replace("€", "").replace(",", "."));
+
   return (
-    <div className="min-h-screen bg-[#080810] text-[#f0f0ff] flex items-center justify-center px-6 py-12">
+    <>
+      {/* Track conversion for Google Ads */}
+      <ConversionTracker
+        conversionType="TEMPLATE_BUNDLE_PURCHASE"
+        value={productValue}
+        currency="EUR"
+      />
+      <div className="min-h-screen bg-[#080810] text-[#f0f0ff] flex items-center justify-center px-6 py-12">
       <div className="max-w-lg w-full text-center">
         <div className="text-6xl mb-6">{product.emoji}</div>
         <h1 className="text-4xl font-black text-green-400 mb-3">
@@ -164,6 +175,7 @@ function SuccessContent() {
         </Link>
       </div>
     </div>
+    </>
   );
 }
 
