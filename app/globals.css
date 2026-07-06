@@ -37,6 +37,22 @@ body {
   overflow-x: hidden;
 }
 
+/* Performance optimizations */
+* {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* GPU acceleration for transforms and animations */
+.will-change-transform {
+  will-change: transform;
+}
+
+/* Reduce paint areas for fixed elements */
+.fixed {
+  transform: translateZ(0);
+}
+
 /* Gradient text utility */
 .text-accent-gradient {
   background: linear-gradient(135deg, #fbbf24 0%, #f59e0b 50%, #d97706 100%);

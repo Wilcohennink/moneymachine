@@ -88,7 +88,7 @@ export default function Home() {
   return (
     <div className="min-h-screen bg-[#080810] text-[#f0f0ff] font-sans">
       {/* NAV */}
-      <nav className="fixed top-0 left-0 right-0 z-50 flex items-center justify-between px-6 py-4 bg-[#080810]/90 backdrop-blur border-b border-[#1e1e30]">
+      <nav className="fixed top-0 left-0 right-0 z-50 flex items-center justify-between px-6 py-4 bg-[#080810]/95 border-b border-[#1e1e30]">
         <div className="font-black text-lg tracking-tight">
           The<span className="text-amber-400">ProfitFactory</span>
         </div>
@@ -102,7 +102,7 @@ export default function Home() {
 
       {/* HERO */}
       <section className="min-h-screen flex flex-col items-center justify-center text-center px-6 pt-24 pb-16 relative overflow-hidden">
-        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[700px] h-[700px] bg-indigo-500/8 rounded-full blur-3xl pointer-events-none" />
+        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[700px] h-[700px] bg-indigo-500/8 rounded-full blur-3xl pointer-events-none will-change-transform" />
         <div className="inline-flex items-center gap-2 bg-indigo-500/10 border border-indigo-500/30 text-indigo-300 px-4 py-2 rounded-full text-sm font-semibold mb-6">
           💰 Real products. Real revenue.
         </div>
